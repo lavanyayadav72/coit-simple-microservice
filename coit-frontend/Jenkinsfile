@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("Build"){
             steps{
-                sh 'cd coit-frontend && docker build -t amol1996/coit-backend1-48843:v1 -f Dockerfile-multistage .'
+                sh 'cd coit-frontend && npm install && npm run build'
             }
         }
         stage("Docker Push"){
@@ -12,11 +12,11 @@ pipeline{
                 // sh "sudo apt-update && sudo apt-get install -y apache2"
             }
         }
-        // stage("Deploy"){
-        //     steps{
-        //         sh "cd coit-frontend && cp build/* /var/www/html/"
-        //     }
-        // }
+         stage("Deploy"){
+             steps{
+                 sh "cd coit-frontend && cp build/* /var/www/html/"
+             }
+         }
         
     }
    // post{
